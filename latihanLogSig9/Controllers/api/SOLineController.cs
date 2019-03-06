@@ -25,7 +25,7 @@ namespace latihanLogSig9.Controllers.api
         [HttpGet]
         public IEnumerable<SOLine> GetSOLine()
         {
-            return _context.SOLine.Include(x => x.Produk).ToList();
+            return _context.SOLine.Include(x => x.Produk).Include(x => x.SOHeader).ToList();
         }
 
         // GET: api/SOLine/5
@@ -39,7 +39,8 @@ namespace latihanLogSig9.Controllers.api
 
             var sOLine = await _context.SOLine
                 .Include(x => x.Produk)
-                .Where(x => x.SOLineID.Equals(id)).FirstOrDefaultAsync();
+                .Include(x => x.SOHeader) //ini yang ditambahkan
+                .Where(x => x.SOHeader.SOHeaderID.Equals(id)).FirstOrDefaultAsync();
 
             if (sOLine == null)
             {

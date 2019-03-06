@@ -17,11 +17,11 @@ namespace latihanLogSig9.Models
         public SOHeader SOHeader { get; set; }
 
         //Lookup Produk
-        [Display(Name = "ID Produk")]
+        [Display(Name = "Produk")]
         public int ProdukID { get; set; }
         public Produk Produk { get; set; }
 
-        [Display(Name = "Quantity")]
+        [Display(Name = "Jumlah")]
         public int Quantity { get; set; }
 
     }
