@@ -66,7 +66,7 @@ namespace latihanLogSig9.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SOHeaderID,MemberID,NamaMember,Tanggal")] SOHeader sOHeader)
+        public async Task<IActionResult> Create([Bind("SOHeaderID,MemberID,Tanggal")] SOHeader sOHeader)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +100,7 @@ namespace latihanLogSig9.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SOHeaderID,MemberID,NamaMember,Tanggal")] SOHeader sOHeader)
+        public async Task<IActionResult> Edit(int id, [Bind("SOHeaderID,MemberID,Tanggal")] SOHeader sOHeader)
         {
             if (id != sOHeader.SOHeaderID)
             {

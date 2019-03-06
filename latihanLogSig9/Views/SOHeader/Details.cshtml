@@ -14,14 +14,14 @@
             @Html.DisplayNameFor(model => model.SOHeader.Member)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.SOHeader.Member.MemberID)
+            @Html.DisplayFor(model => model.SOHeader.Member.NamaMember)
         </dd>
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.SOHeader.NamaMember)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.SOHeader.NamaMember)
-        </dd>
+        </dd>*@
         <dt>
             @Html.DisplayNameFor(model => model.SOHeader.Tanggal)
         </dt>
@@ -84,7 +84,7 @@
                         'scrollCollapse': true,
                         'data': data,
                         'columns': [
-                            { data: 'produkID' },
+                            { data: 'produk.namaProduk' },
                             { data: 'quantity' },
                             //{ data: 'keterangan' },
                             {

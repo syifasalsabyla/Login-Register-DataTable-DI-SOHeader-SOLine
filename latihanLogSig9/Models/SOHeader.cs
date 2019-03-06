@@ -20,8 +20,8 @@ namespace latihanLogSig9.Models
         public int MemberID { get; set; }
         public Member Member { get; set; }
 
-        [Display(Name = "Nama Member")]
-        public string NamaMember { get; set; }
+        //[Display(Name = "Nama Member")]
+        //public string NamaMember { get; set; }
 
         [Display(Name = "Tanggal Pemesanan")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
