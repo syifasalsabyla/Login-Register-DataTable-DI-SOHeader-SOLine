@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace latihanLogSig9.Data.Migrations
+namespace latihanLogSig9.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class semua : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,34 @@ namespace latihanLogSig9.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Member",
+                columns: table => new
+                {
+                    MemberID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    NamaMember = table.Column<string>(nullable: true),
+                    AlamatMember = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Member", x => x.MemberID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Produk",
+                columns: table => new
+                {
+                    ProdukID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    NamaProduk = table.Column<string>(nullable: true),
+                    Keterangan = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produk", x => x.ProdukID);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,8 +121,8 @@ namespace latihanLogSig9.Data.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -138,8 +166,8 @@ namespace latihanLogSig9.Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -150,6 +178,54 @@ namespace latihanLogSig9.Data.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SOHeader",
+                columns: table => new
+                {
+                    SOHeaderID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    MemberID = table.Column<int>(nullable: false),
+                    NamaMember = table.Column<string>(nullable: true),
+                    Tanggal = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SOHeader", x => x.SOHeaderID);
+                    table.ForeignKey(
+                        name: "FK_SOHeader_Member_MemberID",
+                        column: x => x.MemberID,
+                        principalTable: "Member",
+                        principalColumn: "MemberID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SOLine",
+                columns: table => new
+                {
+                    SOLineID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    SOHeaderID = table.Column<int>(nullable: false),
+                    ProdukID = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SOLine", x => x.SOLineID);
+                    table.ForeignKey(
+                        name: "FK_SOLine_Produk_ProdukID",
+                        column: x => x.ProdukID,
+                        principalTable: "Produk",
+                        principalColumn: "ProdukID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SOLine_SOHeader_SOHeaderID",
+                        column: x => x.SOHeaderID,
+                        principalTable: "SOHeader",
+                        principalColumn: "SOHeaderID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -191,6 +267,21 @@ namespace latihanLogSig9.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SOHeader_MemberID",
+                table: "SOHeader",
+                column: "MemberID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SOLine_ProdukID",
+                table: "SOLine",
+                column: "ProdukID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SOLine_SOHeaderID",
+                table: "SOLine",
+                column: "SOHeaderID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +302,22 @@ namespace latihanLogSig9.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "SOLine");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Produk");
+
+            migrationBuilder.DropTable(
+                name: "SOHeader");
+
+            migrationBuilder.DropTable(
+                name: "Member");
         }
     }
 }

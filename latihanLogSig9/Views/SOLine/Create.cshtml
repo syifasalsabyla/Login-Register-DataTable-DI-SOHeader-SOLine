@@ -1,0 +1,41 @@
+﻿@model latihanLogSig9.Models.SOLine
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>SOLine</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SOHeaderID" class="control-label"></label>
+                <select asp-for="SOHeaderID" class ="form-control" asp-items="ViewBag.SOHeaderID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProdukID" class="control-label"></label>
+                <select asp-for="ProdukID" class ="form-control" asp-items="ViewBag.ProdukID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
