@@ -25,7 +25,7 @@ namespace latihanLogSig9.Controllers.api
         [HttpGet]
         public IEnumerable<SOHeader> GetSOHeader()
         {
-            return _context.SOHeader;
+            return _context.SOHeader.Include(x => x.Member).ToList();
         }
 
         // GET: api/SOHeader/5
@@ -37,7 +37,9 @@ namespace latihanLogSig9.Controllers.api
                 return BadRequest(ModelState);
             }
 
-            var sOHeader = await _context.SOHeader.FindAsync(id);
+            var sOHeader = await _context.SOHeader
+                                .Include(x => x.Member)
+                                .Where(x => x.SOHeaderID.Equals(id)).FirstOrDefaultAsync();
 
             if (sOHeader == null)
             {

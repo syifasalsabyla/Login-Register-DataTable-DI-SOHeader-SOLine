@@ -57,7 +57,7 @@ namespace latihanLogSig9.Controllers
         // GET: SOHeader/Create
         public IActionResult Create()
         {
-            ViewData["MemberID"] = new SelectList(_context.Set<Member>(), "MemberID", "MemberID");
+            ViewData["MemberID"] = new SelectList(_context.Set<Member>(), "MemberID", "NamaMember");
             return View();
         }
 
@@ -74,7 +74,7 @@ namespace latihanLogSig9.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MemberID"] = new SelectList(_context.Set<Member>(), "MemberID", "MemberID", sOHeader.MemberID);
+            ViewData["MemberID"] = new SelectList(_context.Set<Member>(), "MemberID", "NamaMember", sOHeader.MemberID);
             return View(sOHeader);
         }
 
@@ -91,7 +91,7 @@ namespace latihanLogSig9.Controllers
             {
                 return NotFound();
             }
-            ViewData["MemberID"] = new SelectList(_context.Set<Member>(), "MemberID", "MemberID", sOHeader.MemberID);
+            ViewData["MemberID"] = new SelectList(_context.Set<Member>(), "MemberID", "NamaMember", sOHeader.MemberID);
             return View(sOHeader);
         }
 
@@ -127,7 +127,7 @@ namespace latihanLogSig9.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MemberID"] = new SelectList(_context.Set<Member>(), "MemberID", "MemberID", sOHeader.MemberID);
+            ViewData["MemberID"] = new SelectList(_context.Set<Member>(), "MemberID", "NamaMember", sOHeader.MemberID);
             return View(sOHeader);
         }
 
