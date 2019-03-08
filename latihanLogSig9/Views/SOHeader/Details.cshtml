@@ -62,7 +62,7 @@
             $.ajax({
                 type: 'GET',
                 crossDomain: true,
-                url: '/api/SOLine',
+                url: '/api/GetData/' + @Model.SOHeader.SOHeaderID,
                 success: function (data) {
                     console.log(data);
                     var table = $('#id_table').DataTable()

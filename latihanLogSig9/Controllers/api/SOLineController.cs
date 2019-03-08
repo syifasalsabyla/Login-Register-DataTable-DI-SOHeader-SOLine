@@ -40,7 +40,7 @@ namespace latihanLogSig9.Controllers.api
             var sOLine = await _context.SOLine
                 .Include(x => x.Produk)
                 .Include(x => x.SOHeader) //ini yang ditambahkan
-                .Where(x => x.SOHeader.SOHeaderID.Equals(id)).FirstOrDefaultAsync();
+                .Where(x => x.SOLineID.Equals(id)).FirstOrDefaultAsync();
 
             if (sOLine == null)
             {
