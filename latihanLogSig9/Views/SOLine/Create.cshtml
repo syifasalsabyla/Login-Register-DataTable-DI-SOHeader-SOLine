@@ -12,13 +12,14 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
             <div class="form-group">
                 <label asp-for="SOHeaderID" class="control-label"></label>
-                <select asp-for="SOHeaderID" class ="form-control" asp-items="ViewBag.SOHeaderID"></select>
+                <select asp-for="SOHeaderID" class="form-control" asp-items="ViewBag.SOHeaderID" disabled></select>
             </div>
             <div class="form-group">
                 <label asp-for="ProdukID" class="control-label"></label>
-                <select asp-for="ProdukID" class ="form-control" asp-items="ViewBag.ProdukID"></select>
+                <select asp-for="ProdukID" class="form-control" asp-items="ViewBag.ProdukID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>

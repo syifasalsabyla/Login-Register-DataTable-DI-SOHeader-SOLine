@@ -54,6 +54,14 @@ namespace latihanLogSig9.Controllers
             return View();
         }
 
+        [HttpGet("{id}")]
+        public IActionResult Create([FromRoute] int id)
+        {
+            ViewData["ProdukID"] = new SelectList(_context.Set<Produk>(), "ProdukID", "NamaProduk");
+            ViewData["SOHeaderID"] = new SelectList(_context.SOHeader, "SOHeaderID", "SOHeaderID", id);
+            return View();
+        }
+
         // POST: SOLine/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
